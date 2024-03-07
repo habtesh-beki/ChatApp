@@ -1,0 +1,259 @@
+/* ::root{
+    --color--primary : #824dff;
+    --color--secondary :#2B2738;
+    --color--search:#372F47;
+    --color--chatback: #F1F2F4;
+
+} */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.background--color{
+    width: 100%;
+    background-color: #824dff;
+    height: 100vh;
+    clip-path: polygon(69% 0, 100% 0, 100% 100%, 0 100%, 0 73%);
+}
+.Container{
+    position: absolute;
+    display: flex;
+    height: 80rem;
+    width: 70rem;
+
+}
+.chatAndProfile{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    height: 100%;
+    
+}
+.otherProfile{
+    position: relative;
+    background-color: #2B2738 ;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+.Chat{
+    background-color: #F1F2F4;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    position: relative;
+}
+.Search--header{
+    margin: 1rem;
+    height: 6rem;
+    background-color: #2B263A;
+    position: relative;
+}
+.Search{
+    margin-top: 2rem;
+    margin-left: 1rem;
+    background-color: #372F47;
+    color: #fff;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    width: 90%;
+    height: 4rem;
+}
+.SearchIcon{
+    position: absolute;
+    font-size: 2.5rem;
+    right: 3rem;
+    top: 2.7rem;
+}
+.contact{
+    margin-top: 4rem;
+}
+.cont--nameTime{
+    color: #cecece;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.person{
+    position: relative;
+    height: 4.5rem;
+    width: 70%;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    display: flex;
+}
+.online::before{
+    position: absolute;
+    content: ' ';
+    width: 1rem;
+    height: 1rem;
+    left: 3rem;
+    bottom: .6rem;
+    background-color: chartreuse;
+    border-radius: 50%;
+    z-index: 1000;
+}
+.offline::after{
+    position: absolute;
+    content: ' ';
+    width: 1rem;
+    height: 1rem;
+    left: 3rem;
+    bottom: .6rem;
+    background-color: #cecece;
+    border-radius: 50%;
+    z-index: 1000;
+}
+.online--time{
+    color: chartreuse;
+}
+.time{
+    font-size: 1.6rem;
+}
+img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+}
+
+.footer--profile{
+    position: absolute;
+    width: 100%;
+    height: 6rem;
+    background-color:#372F47;
+   bottom: 0;
+}
+
+.MyProfile{
+    display: flex;
+    margin: 1rem 0 0 2rem;
+}
+
+.name--profile{
+    color: #F1F2F4;
+    font-size: 2rem;
+}
+.chat--header{
+    position: relative;
+    height: 7rem;
+    width: 100%;
+    padding-top: 2rem;
+    border-top-right-radius: 1rem;
+    background-color: #fff;
+}
+.name-online{
+    color: black;
+}
+ .costomize--option{
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+} 
+.writeChat{
+    position: absolute;
+    height: 6rem;
+    width: 100%;
+    background-color: #fff;
+    border-end-end-radius: 1rem;
+    bottom: 0;
+    right: 0;
+}
+.text--chat{
+    height: 6rem;
+    width: 70%;
+    margin-left: 8rem;
+    outline: none;
+    border: none;
+    padding: 1rem;
+}
+.left_font--text{
+    position: absolute;
+    bottom: 1.7rem;
+    left: 1.5rem;
+    gap: 2rem;
+}
+.emoji{
+    font-size: 2rem;
+    padding-left: 1rem;
+}
+.emoji--send{
+    position: absolute;
+    bottom: 1.7rem;
+    right: 2.5rem;
+    color:#824dff ;
+}
+.sender_chat--all{
+    margin-top: 2rem;
+   padding-left: 2rem;
+    display: flex;
+    width: 60%; 
+}
+
+.message_sender--content{
+    padding: .5rem;
+    background-color: #824dff;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    color: #F1F2F4;
+}
+.reciver_chat--all{
+    margin-top: 2rem;
+    margin-left: 15rem;
+    display: flex;
+    width: 60%;
+    right: 0;
+}
+.message_reciver-content{
+    padding: .5rem;
+    background-color:#2B263A;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    color: #F1F2F4;
+    margin-right: 2rem;
+}
+.hidden{
+    display: none;
+}
+
+.person--other-account:hover{
+  
+}
+.login_other--account{
+    position: absolute;
+    background-color: #824dff;
+    width: 28rem;
+    border-left: 1px solid #2B263A;
+    left: 0;
+    bottom: 6rem;
+   
+}
+.name--login{
+    font-size: 2rem;
+    color: #fff;
+}
+.person--other-account:hover{
+   border-radius: 1rem;
+    width: 93%;
+    background-color: #F1F2F4;  
+}
+.nameAcc:hover{
+    color: #2B2738;
+}
