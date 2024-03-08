@@ -32,8 +32,10 @@ const accOwner = document.querySelector('.person')
 
  ////////////////////////////////////////////
 
+ /*
 const account1 = {
     name:'Habtemariam Bereket',
+    
 }
 const account2 = {
     name:'Abrham Hode',
@@ -45,7 +47,7 @@ const account4 = {
     name: 'Sara abera'
 }
 const accounts = [account1, account2 , account3 ,account4]
-
+*/
 ////////////////////////////////
 
 //display other accounts
@@ -124,6 +126,7 @@ containerOtherUser.addEventListener('click', changeCurrentChat)
 
 
 //////////////////// Send Button 
+let chatHTML;
 const SendChat = function(e){
     e.preventDefault();
 
@@ -132,14 +135,14 @@ const SendChat = function(e){
     const mainChat = inputMessage.value;
     
     
-    const chatHTML = `
+     chatHTML = `
     <div class="sender_chat--all">
     <img src="${currentPhoto}" alt="">
     <p class="message_sender--content">${mainChat}</p>
    </div>
     `
     containerMessage.insertAdjacentHTML('beforeend', chatHTML)
-    inputMessage.innerHTML = ' ';
+    inputMessage.value = ' '
 }
 BtnSend.addEventListener('click', SendChat)
 
