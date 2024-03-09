@@ -233,9 +233,6 @@ img{
     display: none;
 }
 
-.person--other-account:hover{
-  
-}
 .login_other--account{
     position: absolute;
     background-color: #824dff;
