@@ -89,6 +89,7 @@ const changeAccountOwner = function(e){
     }
     currentUser.innerHTML = ' ';
     // containerOtherUser.innerHTML = ' ';
+    
     containerMessage.innerHTML = ' ';
     
     const profilehtml = `
@@ -207,7 +208,7 @@ const displayCurrentUser = function(){
 </div>
 <div class="person  person--other-account">
 <img src=${account1.photo} alt="">
-<p class="name name--login nameAcc" data-name = "Aberham Hode">${account1.name}</p>
+<p class="name name--login nameAcc" data-name = "Abrham Hode">${account1.name}</p>
 </div>
 <div class="person  person--other-account">
 <img src=${account4.photo} alt="">
@@ -222,6 +223,12 @@ let reciverAccountname;
 let reciverAccountPhoto;
 let currentUserName;
 let currentUserphoto;
+
+const currentbetweenChat = function(){
+    reciverAccountname = currnetUserChatInfo.name.trim() ? currnetUserChatInfo.name : 'Abreham Hode';
+   reciverAccountPhoto = currnetUserChatInfo.photo.trim() ? currnetUserChatInfo.photo :'img/ person-1.jpg';
+   currentUserName = currentUserInfo.name.trim() ? currentUserInfo.name: 'sara abera'; currentUserphoto = currentUserInfo.photo.trim()? currentUserInfo.photo:'img/person-6.webp';
+}
 
 //////////////////// Send Button 
 let chatHTML;
@@ -239,27 +246,48 @@ let sendMessage = function(e){
     containerMessage.insertAdjacentHTML('beforeend', chatHTML)
     inputMessage.value = ' '
 }
+
+//////////////////
+
+let senderAccount;
+
+
+const senderAccountFunc = function(){
+    senderAccount = currentUserphoto;
+}
+
 ////send chat
-
-
 BtnSend.addEventListener('click', sendMessage)
 inputMessage.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-        reciverAccountname = currnetUserChatInfo.name.trim() ? currnetUserChatInfo.name : 'Abreham Hode';
-        reciverAccountPhoto = currnetUserChatInfo.photo.trim() ? currnetUserChatInfo.photo :'img/person-1.jpg';
-        currentUserName = currentUserInfo.name.trim() ? currentUserInfo.name: 'sara abera';
-        currentUserphoto = currentUserInfo.photo.trim()? currentUserInfo.photo:'img/person-6.webp';
-         
+       currentbetweenChat();
+        senderAccountFunc();
         sendMessage();
     }
 });
+
+////////current  Chat Header
+const currentChatHeader = function(e){
+    // e.preventDefault();
+    headerChatHtml = `
+             <div class="person person--1 online current--chat--person">
+                   <img src="img/person-1.jpg" alt="">
+                   <div class="cont--nameTime">
+                   <p class="name-online">${account1.name}</p>
+                   <p class="time online--time">${account1.lastSeen}</p>
+           </div>
+         </div>
+    `
+    labelCurrentChat.insertAdjacentHTML('afterbegin' , headerChatHtml)
+}
+currentChatHeader();
 
 ///////// reciveMessage;
 let reciverMessage = function(e){
     reciverChat = `
     <div class="reciver_chat--all">
     <p class="message_reciver-content">${mainChat}</p>
-    <img src="${currentUserphoto}" alt="">
+    <img src="${senderAccount}" alt="">
    </div>
     `
     containerMessage.insertAdjacentHTML('beforeend', reciverChat)
@@ -270,8 +298,11 @@ let reciverMessage = function(e){
  
 logIn_logOut.addEventListener('click', function(e){
      changeAccountOwner(e);
-     reciverMessage();
+     currentbetweenChat();
+     if(inputMessage.value !== '' && reciverAccountname == currentUserName){
+         reciverMessage();
+     }
 })
-
+  
 ///////// send the content of message to the reciver
 
