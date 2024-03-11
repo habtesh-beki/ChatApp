@@ -88,10 +88,9 @@ const changeAccountOwner = function(e){
         })
     }
     currentUser.innerHTML = ' ';
-    // containerOtherUser.innerHTML = ' ';
-    
+
     containerMessage.innerHTML = ' ';
-    
+
     const profilehtml = `
                     <div class="MyProfile "> 
                         <img src="${currentUserInfo.photo}" alt="" class="profile--photo">
@@ -152,7 +151,120 @@ const DisplayOtherAccount = function(e){
 }
 
 DisplayOtherAccount();
+////////Display Current USER
+let currentUserHtml;
+const displayCurrentUser = function(){
 
+    currentUserHtml = `
+       <div class="person person--other-account">
+    <img src=${account3.photo} alt="">
+    <p class="name name--login nameAcc" data-name="Richard arbara">${account3.name}</p>
+ </div>
+<div class="person   person--other-account">
+<img src=${account2.photo} alt="">
+<p class="name name--login nameAcc" data-name = "Habtemariam">${account2.name}</p>
+</div>
+<div class="person  person--other-account">
+<img src=${account1.photo} alt="">
+<p class="name name--login nameAcc" data-name = "Abrham Hode">${account1.name}</p>
+</div>
+<div class="person  person--other-account">
+<img src=${account4.photo} alt="">
+<p class="name name--login nameAcc" data-name = "sara abera">${account4.name}</p>
+</div>
+    `
+    logIn_logOut.insertAdjacentHTML('afterbegin' , currentUserHtml)
+}
+displayCurrentUser();
+//////
+let reciverAccountname;
+let reciverAccountPhoto;
+let currentUserName;
+let currentUserphoto;
+
+const currentbetweenChat = function(){
+    reciverAccountname = currnetUserChatInfo.name.trim() ? currnetUserChatInfo.name : 'Abreham Hode';
+   reciverAccountPhoto = currnetUserChatInfo.photo.trim() ? currnetUserChatInfo.photo :'img/ person-1.jpg';
+   currentUserName = currentUserInfo.name.trim() ? currentUserInfo.name: 'sara abera'; 
+   currentUserphoto = currentUserInfo.photo.trim()? currentUserInfo.photo:'img/person-6.webp';
+}
+
+//////////////////// Send Button 
+let chatHTML;
+let mainChat;
+let sendMessage = function(e){
+    // e.preventDefault();
+     mainChat = inputMessage.value;
+    
+     chatHTML = `
+    <div class="sender_chat--all">
+    <img src="${currentUserphoto}" alt="">
+    <p class="message_sender--content">${mainChat}</p>
+   </div>
+    `
+    containerMessage.insertAdjacentHTML('beforeend', chatHTML)
+    inputMessage.value = ' '
+}
+
+//////////////////
+
+let senderAccount;
+
+
+const senderAccountFunc = function(){
+    senderAccount = currentUserphoto;
+}
+////send chat
+let currrentSenderName;
+let currentReciverName;
+BtnSend.addEventListener('click',  function () {
+        currrentSenderName = currentUserName;
+       currentReciverName = reciverAccountname;
+        senderAccountFunc();
+        sendMessage();
+})
+inputMessage.addEventListener('keydown', function (event) {
+
+    if (event.key === 'Enter') {
+        currentbetweenChat();
+        currrentSenderName = currentUserName;
+       currentReciverName = reciverAccountname;
+        senderAccountFunc();
+        sendMessage();
+    }
+});
+
+////////current  Chat Header
+const currentChatHeader = function(e){
+    // e.preventDefault();
+    headerChatHtml = `
+             <div class="person person--1 online current--chat--person">
+                   <img src="img/person-1.jpg" alt="">
+                   <div class="cont--nameTime">
+                   <p class="name-online">${account1.name}</p>
+                   <p class="time online--time">${account1.lastSeen}</p>
+           </div>
+         </div>
+    `
+    labelCurrentChat.insertAdjacentHTML('afterbegin' , headerChatHtml)
+}
+currentChatHeader();
+
+///////// reciveMessage;
+let reciverMessage = function(e){
+    reciverChat = `
+    <div class="reciver_chat--all">
+    <p class="message_reciver-content">${mainChat}</p>
+    <img src="${senderAccount}" alt="">
+   </div>
+    `
+    containerMessage.insertAdjacentHTML('beforeend', reciverChat)
+}
+
+logIn_logOut.addEventListener('click', function(e){
+     changeAccountOwner(e);
+     currentbetweenChat();
+})
 ////change current Chat Person
 
 const changeCurrentChat = function(e){
@@ -190,119 +302,13 @@ const updateCurentChatUser = function(e){
   `
   labelCurrentChat.insertAdjacentHTML('afterbegin', currentChatHeader)
 }
-
-containerOtherUser.addEventListener('click', changeCurrentChat)
-
-////////Display Current USER
-let currentUserHtml;
-const displayCurrentUser = function(){
-
-    currentUserHtml = `
-       <div class="person person--other-account">
-    <img src=${account3.photo} alt="">
-    <p class="name name--login nameAcc" data-name="Richard arbara">${account3.name}</p>
- </div>
-<div class="person   person--other-account">
-<img src=${account2.photo} alt="">
-<p class="name name--login nameAcc" data-name = "Habtemariam">${account2.name}</p>
-</div>
-<div class="person  person--other-account">
-<img src=${account1.photo} alt="">
-<p class="name name--login nameAcc" data-name = "Abrham Hode">${account1.name}</p>
-</div>
-<div class="person  person--other-account">
-<img src=${account4.photo} alt="">
-<p class="name name--login nameAcc" data-name = "sara abera">${account4.name}</p>
-</div>
-    `
-    logIn_logOut.insertAdjacentHTML('afterbegin' , currentUserHtml)
-}
-displayCurrentUser();
-//////
-let reciverAccountname;
-let reciverAccountPhoto;
-let currentUserName;
-let currentUserphoto;
-
-const currentbetweenChat = function(){
-    reciverAccountname = currnetUserChatInfo.name.trim() ? currnetUserChatInfo.name : 'Abreham Hode';
-   reciverAccountPhoto = currnetUserChatInfo.photo.trim() ? currnetUserChatInfo.photo :'img/ person-1.jpg';
-   currentUserName = currentUserInfo.name.trim() ? currentUserInfo.name: 'sara abera'; currentUserphoto = currentUserInfo.photo.trim()? currentUserInfo.photo:'img/person-6.webp';
-}
-
-//////////////////// Send Button 
-let chatHTML;
-let mainChat;
-let sendMessage = function(e){
-    // e.preventDefault();
-     mainChat = inputMessage.value;
-    
-     chatHTML = `
-    <div class="sender_chat--all">
-    <img src="${currentUserphoto}" alt="">
-    <p class="message_sender--content">${mainChat}</p>
-   </div>
-    `
-    containerMessage.insertAdjacentHTML('beforeend', chatHTML)
-    inputMessage.value = ' '
-}
-
-//////////////////
-
-let senderAccount;
-
-
-const senderAccountFunc = function(){
-    senderAccount = currentUserphoto;
-}
-
-////send chat
-BtnSend.addEventListener('click', sendMessage)
-inputMessage.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-       currentbetweenChat();
-        senderAccountFunc();
-        sendMessage();
-    }
-});
-
-////////current  Chat Header
-const currentChatHeader = function(e){
-    // e.preventDefault();
-    headerChatHtml = `
-             <div class="person person--1 online current--chat--person">
-                   <img src="img/person-1.jpg" alt="">
-                   <div class="cont--nameTime">
-                   <p class="name-online">${account1.name}</p>
-                   <p class="time online--time">${account1.lastSeen}</p>
-           </div>
-         </div>
-    `
-    labelCurrentChat.insertAdjacentHTML('afterbegin' , headerChatHtml)
-}
-currentChatHeader();
-
-///////// reciveMessage;
-let reciverMessage = function(e){
-    reciverChat = `
-    <div class="reciver_chat--all">
-    <p class="message_reciver-content">${mainChat}</p>
-    <img src="${senderAccount}" alt="">
-   </div>
-    `
-    containerMessage.insertAdjacentHTML('beforeend', reciverChat)
-    // inputMessage.value = ' '
-}
-
-//  logIn_logOut.addEventListener('click',changeAccountOwner)
- 
-logIn_logOut.addEventListener('click', function(e){
-     changeAccountOwner(e);
-     currentbetweenChat();
-     if(inputMessage.value !== '' && reciverAccountname == currentUserName){
-         reciverMessage();
-     }
+// && reciverAccountname == currrentSenderName
+containerOtherUser.addEventListener('click', function(e){
+    changeCurrentChat(e);
+    currentbetweenChat()
+ if(inputMessage.value !== '' && currentReciverName == currentUserName && currrentSenderName == reciverAccountname){
+    reciverMessage();
+ }
 })
-  
-///////// send the content of message to the reciver
+
 
